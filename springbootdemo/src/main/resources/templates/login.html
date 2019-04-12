@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onkeydown="on_return();">
+<form name ="loginForm" method="post" action="/loginSuccess">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="69%" height="30"><span class="font_04">帐户名</span>
+                <input type="text" name="userName" size="18.5">
+            </td>
+        </tr>
+        <tr>
+            <td width="69%" height="30"><span class="font_04">密　码</span>
+                <input type="password" name="password" >
+            </td>
+        </tr>
+        <tr>
+            <td width="31%" height="30">
+                <a id="sub" onClick='check()' >
+                    登陆</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+
+<script language="javascript">
+    function check() {
+        var formname=document.loginForm;
+        formname.submit();
+    }
+    //回车时，默认是登陆
+    function on_return(){
+        if(window.event.keyCode == 13){
+            if (document.all('sub')!=null){
+                document.all('sub').click();
+            }
+        }
+    }
+</script>

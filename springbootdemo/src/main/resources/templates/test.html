@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/test.js"></script>
+    <link rel="stylesheet" href="/css/test.css"/>
+</head>
+<body>
+<div style="width: 50%;float: left;margin-bottom: 20px">
+    <audio src="/audio/horse.ogg" controls="controls">
+        Your browser does not support the audio element.
+    </audio>
+    <br/>
+    <h2>物种</h2>
+    <p>点击物种查看类别</p>
+    <ul>
+        <li onclick="showDetails(this)" id="owl" data-animal-type="鸟类">喜鹊</li>
+        <li onclick="showDetails(this)" id="salmon" data-animal-type="鱼类">金枪鱼</li>
+        <li onclick="showDetails(this)" id="tarantula" data-animal-type="蜘蛛">蝇虎</li>
+    </ul>
+    <br/>
+    <h1>jQuery</h1>
+    <div class="jquery-content">
+        <input type="button" id="button1" value="hide()"/>
+        <input type="button" onclick="test.show1()" id="button2" value="show()"/>
+        <button onclick="alert(123)">123</button>
+        <p></p>
+        <h2>淡入淡出</h2>
+        <input id="fadeinInput" type="button" value="淡入"/>
+        <input id="fadeoutInput" type="button" value="淡出"/>
+        <input id="toggle" type="button" value="淡入淡出"/>
+        <input id="fadetoInput" type="button" value="淡出"/>
+        <div style="height: 300px">
+            <div id="div1" style="height: 100px;height: 100px;background-color: aqua;display: none">
+
+            </div>
+            <div id="div2" style="height: 100px;height: 100px;background-color: blue;display: none">
+
+            </div>
+            <div id="div3" style="height: 100px;height: 100px;background-color: bisque;display: none">
+
+            </div>
+        </div>
+        <div class="panel">
+            <p>W3School - 领先的Web技术教程站点</p>
+            <p>在W3School ,你可以找到你所需要的所有网站建设教程.</p>
+        </div>
+        <p class="flip">请点击这里</p>
+    </div>
+    <div>
+        <p id="test">这是本段落中的文字</p>
+        <div id="p-content" class="p-content" style="">
+            获取段落内容
+        </div>
+    </div>
+
+</div>
+<div style="width: 50%;float: left;background-color: red;">
+    sdkfjlsk
+</div>
+
+</body>
+</html>
