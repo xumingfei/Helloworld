@@ -2,9 +2,10 @@ package com.example.springbootdemo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,15 +72,22 @@ public class TestController {
         return "upload";
     }
 
-    @RequestMapping("/upload")
-    public String upload(@RequestParam("file") CommonsMultipartFile file) throws IOException {
+    @RequestMapping(value="/upload",method = RequestMethod.POST)//MultipartFile,CommonsMultipartFile
+//    public String upload( MultipartFile file) throws IOException {
+    public String upload( @RequestParam("file") MultipartFile file) throws IOException {
         //用来检测程序运行时间
         long  startTime=System.currentTimeMillis();
         System.out.println("fileName："+file.getOriginalFilename());
 
         try {
+//            File fileDirectory = new File("E:/上传文件/"+new Date().getTime());
+//            if(fileDirectory.exists()){
+//
+//            }else {
+//                fileDirectory.mkdirs();
+//            }
             //获取输出流
-            OutputStream os=new FileOutputStream("E:/"+new Date().getTime()+file.getOriginalFilename());
+            OutputStream os=new FileOutputStream("E:\\Idea_workspace\\helloworld\\springbootdemo\\uploadfiles\\"+new Date().getTime()+file.getOriginalFilename());
             //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
             InputStream is=file.getInputStream();
 
