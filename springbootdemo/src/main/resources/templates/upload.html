@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var upload = function () {
+            document.getElementById("upload").click();
+        }
+    </script>
+</head>
+<body>
+<form name="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
+    <div style="margin: 10px 10px 10px 10px;">
+        <div style="width: 80px;height: 30px;display: inline-block;line-height: 30px;text-align: center;background: aliceblue;color: blue;" onclick="upload()">
+            上传附件
+        </div>
+        <input style="display: none;" id="upload" type="file" name="file" multiple value="请选择附件..." title="上传附件"/><br>
+        <div style="margin-top: 5px;"></div>
+        <input type="submit" value="提交">
+    </div>
+
+</form>
+
+</body>
+</html>
