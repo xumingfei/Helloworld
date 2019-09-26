@@ -1,4 +1,5 @@
-package com.poi.test;
+/*
+package test;
 //import com.sinitek.sirm.web.plm.funddate.MatchingObject;
 import org.apache.log4j.Logger;
 import org.apache.poi.hwpf.HWPFDocument;
@@ -20,6 +21,15 @@ public class PoiTest {
     private static final Logger LOGGER = Logger.getLogger(PoiTest.class);
     // word整体样式
     private static CTStyles wordStyles = null;
+
+    public static void main(String[] args) {
+        try {
+            String filePath = "C:\\Users\\Xiaofei\\Desktop\\新建 DOCX Document.doc";//"C:\\Users\\Xiaofei\\Desktop\\税率改造UAT测试文档V0.2-20190330.docx";
+            System.out.println(getWordText(filePath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void getWordStyle(String filepath) {
         XWPFDocument template;
@@ -66,13 +76,15 @@ public class PoiTest {
         return filename;
     }
 
-    /**
+    */
+/**
      * 获取03版word文档标题和内容
      * @param path 文件路径
      * @param type 1：只获取标题；2：只获取内容；3：标题和内容都获取
      * @return list
      * @throws IOException
-     */
+     *//*
+
     public static List<String> getWordTitlesAndContext2003(String path, Integer type) throws IOException {
         InputStream is = new FileInputStream(path);
         HWPFDocument doc = new HWPFDocument(is);
@@ -111,7 +123,8 @@ public class PoiTest {
         PicturesTable table = new PicturesTable(doc, dataStream, null, null, null);
 
         //文章图片编号
-        /*int i = 1;
+        */
+/*int i = 1;
         for(int j=0 ; j<numCharacterRuns ; j++){
             //这个类表示一个文本运行，有着共同的属性。
             CharacterRun run = r.getCharacterRun(j);
@@ -124,7 +137,8 @@ public class PoiTest {
                 pic.writeImageContent(new FileOutputStream("D:temp"+filename+"_"+i+".jpg"));
                 i++;
             }
-        }*/
+        }*//*
+
         if (type == 1) {
             return titles;
         } else if (type == 2) {
@@ -143,11 +157,13 @@ public class PoiTest {
         List<XWPFParagraph> listParagraphs = doc.getParagraphs();//得到段落信息
         List<String> list = new ArrayList<String>();
 
-        /*for (int i = 0; i<listParagraphs.size(); i++) {
+        */
+/*for (int i = 0; i<listParagraphs.size(); i++) {
             System.out.println(listParagraphs.get(i).getRuns().get(0).getText(0));
             String str = listParagraphs.get(i).getRuns().get(0).getText(0);
             list.add(str);
-        }*/
+        }*//*
+
 
         List<XWPFParagraph> paras = doc.getParagraphs();
         for (XWPFParagraph para : paras) {
@@ -161,15 +177,18 @@ public class PoiTest {
             }
         }
 
-        /*XWPFWordExtractor extractor = new XWPFWordExtractor(doc);
+        */
+/*XWPFWordExtractor extractor = new XWPFWordExtractor(doc);
         String text = extractor.getText();
         // System.out.println(text);
         POIXMLProperties.CoreProperties coreProps = extractor.getCoreProperties();
         String title = coreProps.getTitle();
-        System.out.println(title);*/
+        System.out.println(title);*//*
+
 
         //获取文档中所有的表格
-        /*List<XWPFTable> tables = doc.getTables();
+        */
+/*List<XWPFTable> tables = doc.getTables();
         List<XWPFTableRow> rows;
         List<XWPFTableCell> cells;
         for (XWPFTable table : tables) {
@@ -184,7 +203,8 @@ public class PoiTest {
                     System.out.println(cell.getText());;
                 }
             }
-        }*/
+        }*//*
+
         close(is);
 
         return list;
@@ -193,6 +213,7 @@ public class PoiTest {
     // 获取2007版word文档内容
     public static List<String> getParagraphText2007(String filePath) throws Exception {
         InputStream is = new FileInputStream(filePath);
+
         XWPFDocument doc = new XWPFDocument(is);
 
         List<String> context = new ArrayList<String>();
@@ -203,7 +224,8 @@ public class PoiTest {
         }
 
         //获取文档中所有的表格
-        /*List<XWPFTable> tables = doc.getTables();
+        */
+/*List<XWPFTable> tables = doc.getTables();
         List<XWPFTableRow> rows;
         List<XWPFTableCell> cells;
         for (XWPFTable table : tables) {
@@ -218,18 +240,22 @@ public class PoiTest {
                     context.add(cell.getText());
                 }
             }
-        }*/
+        }*//*
+
         close(is);
         return context;
     }
 
-    /**
+    */
+/**
      * 将对比结果写入表格
      * @param size 对比list size
      * @param object 短句对比结果
      * @throws Exception
-     */
-    /*public static void writeTable(int size, List<MatchingObject> object, String returnPath) throws Exception {
+     *//*
+
+    */
+/*public static void writeTable(int size, List<MatchingObject> object, String returnPath) throws Exception {
         XWPFDocument doc = new XWPFDocument();
         // 获取新建文档对象的样式
         XWPFStyles newStyles = doc.createStyles();
@@ -297,7 +323,8 @@ public class PoiTest {
         // 写入文件
         doc.write(os);
         close(os);
-    }*/
+    }*//*
+
 
     // 模板方式实现写word
     public static void formatDoc() throws IOException {
@@ -406,10 +433,12 @@ public class PoiTest {
     }
 
 
-    /**
+    */
+/**
      * 关闭输入流
      * @param is 输入流
-     */
+     *//*
+
     private static void close(InputStream is) {
         if (is != null) {
             try {
@@ -420,10 +449,12 @@ public class PoiTest {
         }
     }
 
-    /**
+    */
+/**
      * 关闭输出流
      * @param os 输出流
-     */
+     *//*
+
     private static void close(OutputStream os) throws Exception{
         if (os != null) {
             try {
@@ -434,12 +465,6 @@ public class PoiTest {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            String filePath = "C:\\Users\\Xiaofei\\Desktop\\税率改造UAT测试文档V0.2-20190330.docx";
-            System.out.println(getWordText(filePath));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 }
+*/

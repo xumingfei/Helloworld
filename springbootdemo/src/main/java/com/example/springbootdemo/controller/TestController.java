@@ -1,31 +1,73 @@
 package com.example.springbootdemo.controller;
 
+import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLDecoder;
 import java.util.Date;
 
 
 @Controller
+@RequestMapping("/testcontroller")
 public class TestController {
 
-//    @ResponseBody
-//    @RequestMapping("/test")
-    public String test(){
+    Logger logger = LoggerFactory.getLogger(TestController.class);
+
+    @ResponseBody
+//    @RequestMapping(value = "/test")
+    @RequestMapping(params="method=test2")
+    public String test2(HttpServletRequest request, HttpServletResponse response){//,@RequestBody String json
+        try {
+//            System.out.println(URLDecoder.decode(json,"utf-8"));
+//            String jsonStr = URLDecoder.decode(json,"utf-8");
+
+//            JSONObject obj = JSONObject.parseObject(jsonStr);
+//            System.out.println("oa:"+obj.get("oa"));
+//            System.out.println("xmid:"+obj.get("xmid"));
+            InputStreamReader reader = new InputStreamReader(request.getInputStream(), "utf-8");
+            BufferedReader buffer = new BufferedReader(reader);
+            String data = buffer.readLine();
+            System.out.println("data"+data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "test";
     }
 
-    @RequestMapping("/test")
-    public String testHtml(){
-        return "test";
+    @ResponseBody
+    @RequestMapping(value = "/test")
+    public String test(@RequestBody String json){//,
+        try {
+            System.out.println(URLDecoder.decode(json,"utf-8"));
+            String jsonStr = URLDecoder.decode(json,"utf-8");
+
+            JSONObject jsonObject = JSONObject.fromObject(json);
+            logger.info(String.valueOf(jsonObject.get("oa")));
+//            JSONObject obj = JSONObject.parseObject(jsonStr);
+//            System.out.println("oa:"+obj.get("oa"));
+//            System.out.println("xmid:"+obj.get("xmid"));
+//            InputStreamReader reader = new InputStreamReader(request.getInputStream(), "utf-8");
+//            BufferedReader buffer = new BufferedReader(reader);
+//            String data = buffer.readLine();
+//            System.out.println("data"+data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "张三";
     }
+
+//    @ResponseBody
+//    public String testHtml(){
+//        return "test";
+//    }
 
     @RequestMapping("/login")
     public String login(){
@@ -108,6 +150,11 @@ public class TestController {
         long  endTime=System.currentTimeMillis();
         System.out.println("方法一的运行时间："+String.valueOf(endTime-startTime)+"ms");
         return "success";
+    }
+
+    @RequestMapping("jquery")
+    public String  jQueryTest(){
+        return "jQueryTest";
     }
 
 }
