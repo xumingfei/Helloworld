@@ -1,6 +1,7 @@
 /*
 package test;
 //import com.sinitek.sirm.web.plm.funddate.MatchingObject;
+
 import org.apache.log4j.Logger;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.model.PicturesTable;
@@ -22,15 +23,6 @@ public class PoiTest {
     // word整体样式
     private static CTStyles wordStyles = null;
 
-    public static void main(String[] args) {
-        try {
-            String filePath = "C:\\Users\\Xiaofei\\Desktop\\新建 DOCX Document.doc";//"C:\\Users\\Xiaofei\\Desktop\\税率改造UAT测试文档V0.2-20190330.docx";
-            System.out.println(getWordText(filePath));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void getWordStyle(String filepath) {
         XWPFDocument template;
         try {
@@ -39,11 +31,11 @@ public class PoiTest {
             // 获得模板文档的整体样式
             wordStyles = template.getStyle();
         } catch (FileNotFoundException e) {
-            LOGGER.error("未找到文件",e);
+            LOGGER.error("未找到文件", e);
         } catch (IOException e) {
-            LOGGER.error("",e);
+            LOGGER.error("", e);
         } catch (XmlException e) {
-            LOGGER.error("XML转换异常",e);
+            LOGGER.error("XML转换异常", e);
         }
     }
 
@@ -79,6 +71,7 @@ public class PoiTest {
     */
 /**
      * 获取03版word文档标题和内容
+     *
      * @param path 文件路径
      * @param type 1：只获取标题；2：只获取内容；3：标题和内容都获取
      * @return list
@@ -115,7 +108,7 @@ public class PoiTest {
         }
 
         //得到word数据流
-        byte [] dataStream = doc.getDataStream();
+        byte[] dataStream = doc.getDataStream();
         //用于在一段范围内获得段落数
         int numCharacterRuns = r.numCharacterRuns();
         // System.out.println("CharacterRuns 数:"+numCharacterRuns);
@@ -213,7 +206,6 @@ public class PoiTest {
     // 获取2007版word文档内容
     public static List<String> getParagraphText2007(String filePath) throws Exception {
         InputStream is = new FileInputStream(filePath);
-
         XWPFDocument doc = new XWPFDocument(is);
 
         List<String> context = new ArrayList<String>();
@@ -249,7 +241,8 @@ public class PoiTest {
     */
 /**
      * 将对比结果写入表格
-     * @param size 对比list size
+     *
+     * @param size   对比list size
      * @param object 短句对比结果
      * @throws Exception
      *//*
@@ -436,6 +429,7 @@ public class PoiTest {
     */
 /**
      * 关闭输入流
+     *
      * @param is 输入流
      *//*
 
@@ -444,7 +438,7 @@ public class PoiTest {
             try {
                 is.close();
             } catch (IOException e) {
-                LOGGER.error("流关闭异常",e);
+                LOGGER.error("流关闭异常", e);
             }
         }
     }
@@ -452,19 +446,27 @@ public class PoiTest {
     */
 /**
      * 关闭输出流
+     *
      * @param os 输出流
      *//*
 
-    private static void close(OutputStream os) throws Exception{
+    private static void close(OutputStream os) throws Exception {
         if (os != null) {
             try {
                 os.close();
             } catch (IOException e) {
-                LOGGER.error("流关闭异常",e);
+                LOGGER.error("流关闭异常", e);
             }
         }
     }
 
-
+    public static void main(String[] args) {
+        try {
+            String filePath = "C:\\Users\\Xiaofei\\Desktop\\税率改造UAT测试文档V0.2-20190330.docx";
+            System.out.println(getWordText(filePath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 */
