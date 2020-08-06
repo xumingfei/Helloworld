@@ -10,6 +10,7 @@ public class Test {
         map.put("a","b");
         map.put("a","c");
         System.out.println(map.get("a"));
+        
 /*
         System.out.println(new String(MD5Encoder.decode("MDAwMDAw".getBytes())));
 */
