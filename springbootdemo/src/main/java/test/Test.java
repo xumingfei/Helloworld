@@ -1,29 +1,33 @@
 package test;
 
-import test.test.Contanstans_jk;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.io.*;
+class  HasStatic{
+    public  static  void  main(String  args[]){
 
-public class Test {
-    public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Test");
-        File filePath = new File("C:\\Users\\Xiaofei\\Desktop\\新建 DOCX Document.doc");
-        InputStream in = new FileInputStream(filePath);
-        try {
-            System.out.println(in.available());
-            if( in.available() ==0){
-                System.out.println("文件为空");
-            }else{
-                System.out.println("文件不为空");
+        String arr="aaabbccccddddeeeffffffaabbcdef";
+        char[] a=arr.toCharArray();
+        Map<String,Object> map = new HashMap<>();
+        System.out.println(a.length);
+        for (int i=0;i<a.length-1;i++) {
+            System.out.println(a[i]);
+            if(map.containsKey(String.valueOf(a[i]))){
+                String str = map.get(String.valueOf(a[i]))+String.valueOf(a[i]);
+                map.put(String.valueOf(a[i]),str);
+            }else {
+                map.put(String.valueOf(a[i]),String.valueOf(a[i]));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-//        printStaticVar();
+        List list = new ArrayList<>();
+        for (String key:map.keySet()) {
+            list.add(map.get(key));
+        }
+        list.toArray(new String[map.size()]);
     }
 
-    private static void printStaticVar() {
-        System.out.println(Contanstans_jk.FIANL_VAR);
-        System.out.println(Contanstans_jk.VAR);
-    }
+
+
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymelear.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <form th:action="@{/login2}" method="post">
+        <div>
+            <span ></span>
+
+        </div>
+        <div>
+            <span style="font-size: 12px; color: red" th:text="${userName}" ></span>
+            <input type="text" id="user_name" name="userName" value="" placeholder="用户名">
+        </div>
+        <div>
+            <span style="font-size: 12px; color: red" th:text="${password}" ></span>
+            <input type="text" id="password" name="password" placeholder="密码">
+        </div>
+        <br>
+        <button type="submit">登录 </button>
+    </form>
+</body>
+</html>

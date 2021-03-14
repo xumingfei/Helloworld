@@ -1,18 +1,24 @@
 package com.example.springbootdemo.controller;
 
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
-import java.util.Date;
 
 
 @Controller
@@ -20,6 +26,32 @@ import java.util.Date;
 public class TestController {
 
     Logger logger = LoggerFactory.getLogger(TestController.class);
+
+    @Autowired
+    RedisTemplate redisTemplate;
+
+    public void testRedis(){
+        redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations redisOperations) throws DataAccessException {
+                redisOperations.opsForValue().set("key1","value1");
+                return null;
+            }
+        });
+        /*redisTemplate.execute((RedisOperations<String,Object> redisOperations)->{
+
+            return null;
+        });*/
+        redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                return null;
+            }
+        });
+        redisTemplate.execute((RedisConnection redisConnection)->{
+           return null;
+        });
+    }
 
     @ResponseBody
 //    @RequestMapping(value = "/test")
@@ -129,7 +161,7 @@ public class TestController {
 //                fileDirectory.mkdirs();
 //            }
             //获取输出流
-            OutputStream os=new FileOutputStream("E:\\Idea_workspace\\helloworld\\springbootdemo\\uploadfiles\\"+new Date().getTime()+file.getOriginalFilename());
+            OutputStream os=new FileOutputStream("E:\\Idea_workspace\\helloworld\\springbootdemo\\uploadfiles\\"+System.currentTimeMillis()+file.getOriginalFilename());
             //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
             InputStream is=file.getInputStream();
 
